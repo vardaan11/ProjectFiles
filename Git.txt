@@ -1,0 +1,78 @@
+Git Commands
+
+//Initialise a repo
+$ Git init
+
+//Git Config
+There are 3 levels of git config: project, global and system.
+
+project: Project configs are only available for the current project and stored in .git/config in the project's directory.
+global: Global configs are available for all projects for the current user and stored in ~/.gitconfig.
+system: System configs are available for all the users/projects and stored in /etc/gitconfig.
+
+And as you may guess, project overrides global and global overrides system.
+Note: Project configs are local to just one particular copy/clone of this particular repo, and need to be reapplied if the repo is recloned clean from the remote. It changes a local file that is not sent to the remote with a commit/push.
+
+$ git config --local user.name "John Doe" 
+$ git config --global user.name "John Doe"
+$ git config --system user.name "John Doe" 
+
+//See the state of files in working tree, staging area vs latest commit in git history
+$ git status
+
+//Add file to staging area from working tree
+$ git add <filename>
+$ git add . 
+$ git add --all
+
+//Make a Commit, add modified files and commit
+$ git commit -m "message"
+$ git commit -a -m "message"
+
+//log, log with oneline per commit, detailed log of particular commit, log of 1 file, commit history graph
+$ git log
+$ git log --oneline
+$ git log <commit hash>
+$ git log <filename>
+$ git log --all --decorate --oneline --graph
+
+//difference b/w working tree and staging area, b/w staged file and latest commit, diff between 2 branches
+$ git diff
+$ git diff --staged
+$ git diff --cached
+$ git diff <branch1>..<branch2>
+
+//Remove a file from working dir and staging area
+$ git rm <filename>
+
+//restore from staging area to working tree, restore from latest commit to staging area, restore file from earlier commit
+$ git checkout -- <filename>
+$ git reset HEAD <filename>
+$ git checkout HASH -- <filename>
+
+//Create a Git branch, see list of branches, move to a branch, see branches merged into the current branch, create and checkout branch 
+$ git branch <branchname>
+$ git branch
+$ git checkout <branchname>
+$ git branch --merged
+$ git checkout -b <branchname>
+
+//Merge branch, abort a merge
+$ git merge <branchname>
+$ git merge --abort
+
+//Delete Branch, delete branch without merging hence lose work
+$ git branch -d <branchname>
+$ git branch -D <branchname>
+
+//Detached head state due to checkout a commit directly using
+$ git checkout HASH
+
+//create a stash point, list of stash point, list stash points and show diffs per stash, apply most recent stash, apply most recent stash and remove it from saved stashes, save stash point with description  
+$ git stash
+$ git stash list
+$ git stash list -p
+$ git stash apply
+$ git stash pop 
+$ git stash apply <stash label>
+$ git stash save "description"
